@@ -16,7 +16,7 @@
     <script type="text/babel">
         class Login extends React.Component {
             show=()=>{
-                const {username, password}=this.refs
+                const {username, password}=this
                 // console.log(username,password)
                 alert(`username is:${username.value},password is ${password.value}`)
 
@@ -27,11 +27,12 @@
             }
 
             //用input里面的name其实就是把q的值经过地址传给下一个网址
+            //ref={c=>this.name=c}很重要！在函数里就可以直接解构了const {username, password}=this
             render() {
                 return (
                     <form action="www.google.com" onSubmit={this.handleSumbit}>
-                       用户名： <input ref="username" type="text" name="username" />
-                        密码：<input ref="password" type="password" name="password" />
+                       用户名： <input ref={c=>this.username=c} type="text" name="username" />
+                        密码：<input ref={c=>this.password=c} type="password" name="password" />
                         <button onClick={this.show}>Login</button>
                     </form>
                 )
